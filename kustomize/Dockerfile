@@ -9,6 +9,9 @@ RUN wget -nv https://github.com/kubernetes-sigs/kustomize/releases/download/kust
 
 FROM gcr.io/cloud-builders/gcloud
 
+# install gcloud-auth-plugin
+RUN gcloud components install gke-gcloud-auth-plugin
+
 COPY --from=build kustomize /usr/bin/kustomize
 COPY kustomize.bash /builder/kustomize.bash
 ENTRYPOINT ["/builder/kustomize.bash"]

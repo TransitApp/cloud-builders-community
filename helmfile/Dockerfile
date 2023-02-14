@@ -1,7 +1,7 @@
 FROM gcr.io/cloud-builders/gcloud
 
-ARG HELM_VERSION=v3.6.3
-ARG HELMFILE_VERSION=v0.140.0
+ARG HELM_VERSION=v3.11.1
+ARG HELMFILE_VERSION=v0.144.0
 
 COPY helmfile.bash /builder/helmfile.bash
 
@@ -21,6 +21,9 @@ RUN chmod +x /builder/helmfile.bash && \
   curl -SsL https://github.com/roboll/helmfile/releases/download/${HELMFILE_VERSION}/helmfile_linux_amd64 > /builder/helmfile/helmfile && \
   chmod 700 /builder/helmfile/helmfile && \
   /builder/helmfile/helm plugin install https://github.com/databus23/helm-diff
+
+# install gcloud-auth-plugin
+RUN gcloud components install gke-gcloud-auth-plugin
 
 ENV PATH=/builder/helmfile/:$PATH
 
