@@ -17,13 +17,13 @@ steps:
   - --build-arg
   - TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}
   - --tag
-  - gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}
+  - us-east1-docker.pkg.dev/${PROJECT_ID}/cloud-builders/terraform:${_TERRAFORM_VERSION}
   - --tag
-  - gcr.io/${PROJECT_ID}/terraform:latest
+  - us-east1-docker.pkg.dev/${PROJECT_ID}/cloud-builders/terraform:latest
   - .
-- name: 'gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}'
+- name: 'us-east1-docker.pkg.dev/${PROJECT_ID}/cloud-builders/terraform:${_TERRAFORM_VERSION}'
   args: ['version']
 images:
-  - 'gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}'
-  - 'gcr.io/${PROJECT_ID}/terraform:latest'
+  - 'us-east1-docker.pkg.dev/${PROJECT_ID}/cloud-builders/terraform:${_TERRAFORM_VERSION}'
+  - 'us-east1-docker.pkg.dev/${PROJECT_ID}/cloud-builders/terraform:latest'
 tags: ['cloud-builders-community']
